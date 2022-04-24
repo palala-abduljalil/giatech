@@ -13,7 +13,7 @@ HR and Project Management System using Laravel 8, VueJS 2 and MySQL.
 
 ## Installation
 
-- `git clone https://github.com/AnowarCST/laravel-vue-crud-starter.git`
+- `git clone https://github.com/palala-abduljalil/giatech.git`
 - `cd laravel-vue-crud-starter/`
 - `composer install`
 - `cp .env.example .env`
