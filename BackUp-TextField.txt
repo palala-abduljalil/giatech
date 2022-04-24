@@ -1,0 +1,94 @@
+<label class="required"
+	>Title:
+</label>
+<input
+	v-validate="'required|max:255'"
+	name="title"
+	v-model="service.title"
+	:readonly="!submitButton"
+	type="text"
+	class="form-control"
+	:class="{
+		'is-invalid':
+			errors.has('form2.title'),
+	}"
+	placeholder="Enter title: "
+/>
+<div
+	class="invalid-feedback"
+	v-if="errors.has('form2.title')"
+>
+	{{ errors.first("form2.title") }}
+</div>
+
+<label class="required"
+	>Description:
+</label>
+<textarea
+	v-validate="
+		'required|min:10|max:500'
+	"
+	name="description"
+	rows="6"
+	v-model="service.description"
+	:readonly="!submitButton"
+	class="form-control"
+	:class="{
+		'is-invalid':
+			errors.has(
+				'form2.description'
+			),
+	}"
+	placeholder="Enter description"
+></textarea>
+<div
+	class="invalid-feedback"
+	v-if="errors.has('form2.description')"
+>
+	{{
+		errors.first("form2.description")
+	}}
+</div>
+
+<label for="">Cover Image:</label>
+<div
+	class="form-group"
+	v-show="submitButton"
+>
+	<div class="custom-file">
+		<input
+			v-validate="
+				'mimes:image/jpeg,image/jpg,image/png|size:2048'
+			"
+			name="image"
+			ref="imageUploader"
+			:class="{
+				'is-invalid':
+					errors.has('form2.image'),
+			}"
+			type="file"
+			class="custom-file-input"
+			id="serviceInputFile"
+			@change="imageSelected"
+		/>
+		<label
+			class="custom-file-label"
+			for="serviceInputFile"
+			>{{ imageLabel }}
+		</label>
+		<div
+			class="invalid-feedback"
+			v-if="errors.has('form2.image')"
+		>
+			{{ errors.first("form2.image") }}
+		</div>
+	</div>
+</div>
+<div class="form-group">
+	<img
+		:src="imagePreview"
+		class="img-fluid coverImageHeight"
+	/>
+</div>
+
+
